@@ -6,10 +6,7 @@ C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlado
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\modelo\Entrenador.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\modelo\Juego.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlador\SedeControlador.java
-<<<<<<< Updated upstream
-=======
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\vista\MenuUsuario.java
->>>>>>> Stashed changes
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlador\LoginControlador.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\modelo\Partido.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\modelo\Sede.java
@@ -17,20 +14,12 @@ C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlado
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlador\PatrocinioControlador.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\modelo\Patrocinador.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\modelo\Equipo.java
-<<<<<<< Updated upstream
-C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlador\JuegoControlador.java
-C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\modelo\Torneo.java
-C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\vista\TorneoVista.java
-C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\vista\LoginVista.java
-C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlador\MenuOrganizadorControlador.java
-=======
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlador\ExportPDF.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlador\JuegoControlador.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlador\ReporteControlador.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\modelo\Torneo.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlador\Exportable.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\vista\LoginVista.java
->>>>>>> Stashed changes
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlador\EquipoControlador.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlador\JugadorControlador.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\vista\GestionPatrocinadoresVista.java
@@ -41,18 +30,11 @@ C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\modelo\Ins
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\vista\GestionTorneosVista.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\vista\Main.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlador\PatrocinadorControlador.java
-<<<<<<< Updated upstream
-=======
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\vista\ReporteTorneosVista.java
->>>>>>> Stashed changes
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlador\ConexionBDD.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlador\RondaControlador.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\controlador\InscripcionControlador.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\modelo\Jugador.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\vista\GestionPartidosVista.java
-<<<<<<< Updated upstream
-C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\vista\MenuOrganizador.java
-=======
->>>>>>> Stashed changes
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\modelo\Participacion.java
 C:\Users\LENOVO\Documents\NetBeansProjects\GameStudents\src\main\java\vista\GestionEquiposVista.java

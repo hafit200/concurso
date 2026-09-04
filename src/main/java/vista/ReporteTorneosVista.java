@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Usuario;
 
 /**
  *
@@ -36,6 +37,7 @@ public class ReporteTorneosVista extends javax.swing.JFrame {
 
     private DefaultTableModel modeloReporte;
     private ExportPDF exportPDF = new ExportPDF();
+    private Usuario usuario;
 
     /**
      * Creates new form ReporteTorneosVista
@@ -44,12 +46,14 @@ public class ReporteTorneosVista extends javax.swing.JFrame {
 
         initComponents();
 
-        setLocationRelativeTo(null);
+        this.usuario = usuario;
 
-        modeloReporte
-                = (DefaultTableModel) tblReporte.getModel();
+    setLocationRelativeTo(null);
 
-        cargarEquipos();
+    modeloReporte
+            = (DefaultTableModel) tblReporte.getModel();
+
+    cargarEquipos();
     }
 
     public void cargarEquipos() {
@@ -215,7 +219,7 @@ public class ReporteTorneosVista extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(258, 258, 258))
+                .addGap(206, 206, 206))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)

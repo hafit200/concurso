@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Usuario;
 
 /**
  *
@@ -31,14 +32,17 @@ public class GestionEquiposVista extends javax.swing.JFrame {
     private DefaultTableModel modeloEquipos;
     private DefaultTableModel modeloJugadores;
     private DefaultTableModel modeloEntrenadores;
-
+private Usuario usuario;
     /**
      * Creates new form GestionEquiposVista
      */
-    public GestionEquiposVista() {
+    public GestionEquiposVista(Usuario usuario) {
 
-        initComponents();
+    initComponents();
 
+    this.usuario = usuario;
+
+    setLocationRelativeTo(null);
         setLocationRelativeTo(null);
 
         modeloEquipos = (DefaultTableModel) tblEquipos.getModel();
@@ -191,6 +195,7 @@ public class GestionEquiposVista extends javax.swing.JFrame {
         btnLimpiarEntrenador = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblEntrenadores = new javax.swing.JTable();
+        btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -485,7 +490,7 @@ public class GestionEquiposVista extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(47, 47, 47)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(txtNombreEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -516,6 +521,13 @@ public class GestionEquiposVista extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("ENTRENADORES", jPanel3);
 
+        btnRegresar.setText("←");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -526,15 +538,19 @@ public class GestionEquiposVista extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(262, 262, 262)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegresar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
@@ -717,6 +733,15 @@ public class GestionEquiposVista extends javax.swing.JFrame {
         limpiarJugador();        // TODO add your handling code here:
     }//GEN-LAST:event_btnLimpiarJugadorActionPerformed
 
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+
+    MenuUsuario menu = new MenuUsuario(usuario);
+
+    menu.setVisible(true);
+
+    this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -745,11 +770,7 @@ public class GestionEquiposVista extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GestionEquiposVista().setVisible(true);
-            }
-        });
+      
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -760,6 +781,7 @@ public class GestionEquiposVista extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnLimpiarEntrenador;
     private javax.swing.JButton btnLimpiarJugador;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cmbEntrenadorEquipos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

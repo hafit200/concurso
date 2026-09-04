@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Usuario;
 
 /**
  *
@@ -38,19 +39,24 @@ public class GestionPartidosVista extends javax.swing.JFrame {
     private DefaultTableModel modeloPartidos;
     private DefaultTableModel modeloArbitros;
     private DefaultTableModel modeloSedes;
-
+private Usuario usuario;
     /**
      * Creates new form GestionPartidosVista
      */
-    public GestionPartidosVista() {
+    public GestionPartidosVista(Usuario usuario) {
 
-        initComponents();
+    initComponents();
+
+    this.usuario = usuario;
+
+    setLocationRelativeTo(null);
 
         setLocationRelativeTo(null);
 
         modeloPartidos = (DefaultTableModel) tblPartidos.getModel();
         modeloArbitros = (DefaultTableModel) tblArbitros.getModel();
         modeloSedes = (DefaultTableModel) tblSedes.getModel();
+        
 
         cargarPartidos();
         cargarArbitros();
@@ -266,6 +272,7 @@ public class GestionPartidosVista extends javax.swing.JFrame {
         tblPartidos = new javax.swing.JTable();
         btnLimpiarPartido = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -319,7 +326,7 @@ public class GestionPartidosVista extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(65, 65, 65)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,16 +335,16 @@ public class GestionPartidosVista extends javax.swing.JFrame {
                             .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnGuardarSede))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(89, 89, 89)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(btnEliminarSede)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                                .addGap(136, 136, 136)
                                 .addComponent(btnLimpiarSede))
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtPaisSede, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNombreSede)
-                            .addComponent(txtCiudad))))
+                            .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPaisSede, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombreSede, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(164, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -364,9 +371,9 @@ public class GestionPartidosVista extends javax.swing.JFrame {
                     .addComponent(btnGuardarSede)
                     .addComponent(btnEliminarSede)
                     .addComponent(btnLimpiarSede))
-                .addGap(32, 32, 32)
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("SEDES", jPanel3);
@@ -658,6 +665,13 @@ public class GestionPartidosVista extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Gestion de Partidos");
 
+        btnRegresar.setText("←");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -669,14 +683,18 @@ public class GestionPartidosVista extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(291, 291, 291)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(jLabel1)
-                .addGap(26, 26, 26)
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
@@ -1032,6 +1050,16 @@ cargarSedes();
 cargarComboSedes();        // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarSedeActionPerformed
 
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+
+    MenuUsuario menu = new MenuUsuario(usuario);
+
+    menu.setVisible(true);
+
+    this.dispose();
+     // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1060,11 +1088,7 @@ cargarComboSedes();        // TODO add your handling code here:
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GestionPartidosVista().setVisible(true);
-            }
-        });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1077,6 +1101,7 @@ cargarComboSedes();        // TODO add your handling code here:
     private javax.swing.JButton btnLimpiarArbitro;
     private javax.swing.JButton btnLimpiarPartido;
     private javax.swing.JButton btnLimpiarSede;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> cmbArbitro;
     private javax.swing.JComboBox<String> cmbEquipo1;
     private javax.swing.JComboBox<String> cmbEquipo2;

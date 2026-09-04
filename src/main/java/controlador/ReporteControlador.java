@@ -48,6 +48,10 @@ public class ReporteControlador {
 
             while (rs.next()) {
 
+                System.out.println(
+                        "TORNEO: " + rs.getString("torneo")
+                );
+
                 String posicion;
 
                 if (rs.getObject("posicion_final") == null) {

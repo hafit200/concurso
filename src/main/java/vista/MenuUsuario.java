@@ -3,71 +3,76 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
+
 import modelo.Usuario;
 import vista.GestionEquiposVista;
 import vista.GestionTorneosVista;
 import vista.GestionPartidosVista;
 import vista.GestionPatrocinadoresVista;
 import vista.LoginVista;
+
 /**
  *
  * @author LENOVO
  */
 public class MenuUsuario extends javax.swing.JFrame {
-private Usuario usuario;
+
+    private Usuario usuario;
+
     /**
      * Creates new form MenuUsuario
      */
     public MenuUsuario(Usuario usuario) {
 
-    initComponents();
+        initComponents();
 
-    this.usuario = usuario;
+        this.usuario = usuario;
 
-    setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
 
-    lblNombre.setText(usuario.getNombre());
-    lblRol.setText(usuario.getRol());
+        lblNombre.setText(usuario.getNombre());
+        lblRol.setText(usuario.getRol());
 
-    configurarMenu();
-}
+        configurarMenu();
+    }
 
-    
     public void configurarMenu() {
 
-    String rol = usuario.getRol();
+        String rol = usuario.getRol();
 
-    btnMiInformacion.setVisible(true);
-    btnMiEquipo.setVisible(true);
-    btnMisTorneos.setVisible(true);
-    btnMisPartidos.setVisible(true);
+        btnMiInformacion.setVisible(true);
+        btnMiEquipo.setVisible(true);
+        btnMisTorneos.setVisible(true);
+        btnMisPartidos.setVisible(true);
 
-    btnGestionEquipos.setVisible(false);
-    btnGestionTorneos.setVisible(false);
-    btnGestionPartidos.setVisible(false);
-    btnGestionPatrocinadores.setVisible(false);
-    btnReporte.setVisible(false);
+        btnGestionEquipos.setVisible(false);
+        btnGestionTorneos.setVisible(false);
+        btnGestionPartidos.setVisible(false);
+        btnGestionPatrocinadores.setVisible(false);
+        btnReporte.setVisible(false);
 
-    if (rol.equals("ORGANIZADOR")) {
+        if (rol.equals("ORGANIZADOR")) {
 
-        btnMiInformacion.setVisible(false);
-        btnMiEquipo.setVisible(false);
-        btnMisTorneos.setVisible(false);
-        btnMisPartidos.setVisible(false);
+            btnMiInformacion.setVisible(false);
+            btnMiEquipo.setVisible(false);
+            btnMisTorneos.setVisible(false);
+            btnMisPartidos.setVisible(false);
 
-        btnGestionEquipos.setVisible(true);
-        btnGestionTorneos.setVisible(true);
-        btnGestionPartidos.setVisible(true);
-        btnGestionPatrocinadores.setVisible(true);
-        btnReporte.setVisible(true);
+            btnGestionEquipos.setVisible(true);
+            btnGestionTorneos.setVisible(true);
+            btnGestionPartidos.setVisible(true);
+            btnGestionPatrocinadores.setVisible(true);
+            btnReporte.setVisible(true);
+        }
+
+        if (rol.equals("ARBITRO")) {
+
+            btnMiEquipo.setVisible(false);
+            btnMisTorneos.setVisible(false);
+        }
     }
 
-    if (rol.equals("ARBITRO")) {
 
-        btnMiEquipo.setVisible(false);
-        btnMisTorneos.setVisible(false);
-    }
-}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -251,40 +256,40 @@ private Usuario usuario;
     }//GEN-LAST:event_btnMisPartidosActionPerformed
 
     private void btnGestionEquiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionEquiposActionPerformed
-GestionEquiposVista vista = new GestionEquiposVista();
+        GestionEquiposVista vista = new GestionEquiposVista(usuario);
 
-vista.setVisible(true);        // TODO add your handling code here:
+        vista.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnGestionEquiposActionPerformed
 
     private void btnGestionTorneosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionTorneosActionPerformed
-GestionTorneosVista vista = new GestionTorneosVista();
+        GestionTorneosVista vista = new GestionTorneosVista(usuario);
 
-vista.setVisible(true);        // TODO add your handling code here:
+        vista.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnGestionTorneosActionPerformed
 
     private void btnGestionPartidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionPartidosActionPerformed
-GestionPartidosVista vista = new GestionPartidosVista();
+        GestionPartidosVista vista = new GestionPartidosVista(usuario);
 
-vista.setVisible(true);        // TODO add your handling code here:
+        vista.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnGestionPartidosActionPerformed
 
     private void btnGestionPatrocinadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionPatrocinadoresActionPerformed
-GestionPatrocinadoresVista vista = new GestionPatrocinadoresVista();
+        GestionPatrocinadoresVista vista = new GestionPatrocinadoresVista(usuario);
 
-vista.setVisible(true);        // TODO add your handling code here:
+        vista.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnGestionPatrocinadoresActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-LoginVista login = new LoginVista();
+        LoginVista login = new LoginVista();
 
-login.setVisible(true);
+        login.setVisible(true);
 
-this.dispose();        // TODO add your handling code here:
+        this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
-   ReporteTorneosVista reporte = new ReporteTorneosVista();
-reporte.setVisible(true);     // TODO add your handling code here:
+        ReporteTorneosVista reporte = new ReporteTorneosVista();
+        reporte.setVisible(true);     // TODO add your handling code here:
     }//GEN-LAST:event_btnReporteActionPerformed
 
     /**
@@ -315,7 +320,6 @@ reporte.setVisible(true);     // TODO add your handling code here:
         //</editor-fold>
 
         /* Create and display the form */
-       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

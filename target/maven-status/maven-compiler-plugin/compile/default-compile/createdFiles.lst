@@ -1,11 +1,6 @@
+vista\LoginVista$2.class
 modelo\Inscripcion.class
 controlador\EntrenadorControlador.class
-<<<<<<< Updated upstream
-vista\TorneoVista.class
-controlador\PatrocinadorControlador.class
-controlador\SedeControlador.class
-vista\MenuOrganizador$1.class
-=======
 vista\GestionTorneosVista$7.class
 vista\GestionPartidosVista$6.class
 vista\MenuUsuario$2.class
@@ -13,46 +8,36 @@ controlador\PatrocinadorControlador.class
 controlador\SedeControlador.class
 vista\GestionTorneosVista$12.class
 vista\ReporteTorneosVista$3.class
->>>>>>> Stashed changes
 controlador\PartidoControlador.class
 vista\GestionPatrocinadoresVista$1.class
 vista\GestionEquiposVista$3.class
 modelo\Juego.class
 controlador\TorneoControlador.class
-<<<<<<< Updated upstream
-=======
 vista\MenuUsuario.class
-vista\GestionPatrocinadoresVista$7.class
->>>>>>> Stashed changes
 controlador\JuegoControlador.class
 modelo\Partido.class
 vista\GestionEquiposVista$6.class
 vista\MenuUsuario$5.class
 vista\GestionPatrocinadoresVista.class
+vista\GestionPartidosVista$2.class
 controlador\ParticipacionJugadorControlador.class
-<<<<<<< Updated upstream
-=======
-vista\GestionPatrocinadoresVista$5.class
 vista\ReporteTorneosVista$2.class
->>>>>>> Stashed changes
 modelo\Equipo.class
 vista\GestionEquiposVista$7.class
 controlador\EquipoControlador.class
+vista\MenuUsuario$8.class
 modelo\Patrocinador.class
 modelo\Jugador.class
-vista\MenuOrganizador.class
+vista\GestionPartidosVista$5.class
+vista\GestionTorneosVista$3.class
+vista\GestionTorneosVista$9.class
 modelo\Participacion.class
-<<<<<<< Updated upstream
-modelo\Usuario.class
-=======
-vista\GestionPatrocinadoresVista$8.class
 vista\LoginVista$3.class
 vista\MenuUsuario$1.class
 modelo\Usuario.class
 vista\GestionPartidosVista$8.class
 vista\GestionTorneosVista$6.class
 vista\MenuUsuario$4.class
->>>>>>> Stashed changes
 controlador\LoginControlador.class
 controlador\PatrocinioControlador.class
 vista\LoginVista.class
@@ -61,10 +46,6 @@ vista\GestionEquiposVista$8.class
 vista\MenuUsuario$7.class
 controlador\ArbitroControlador.class
 vista\GestionPartidosVista$1.class
-<<<<<<< Updated upstream
-vista\GestionPartidosVista.class
-=======
-vista\GestionPatrocinadoresVista$6.class
 controlador\ReporteControlador.class
 vista\GestionPartidosVista.class
 vista\GestionTorneosVista$10.class
@@ -73,37 +54,31 @@ vista\GestionPartidosVista$4.class
 vista\GestionPartidosVista$10.class
 vista\GestionTorneosVista$2.class
 vista\GestionTorneosVista$5.class
-vista\GestionPatrocinadoresVista$9.class
->>>>>>> Stashed changes
 vista\GestionTorneosVista.class
 vista\ReporteTorneosVista$1.class
 controlador\InscripcionControlador.class
 modelo\Arbitro.class
 vista\GestionEquiposVista$1.class
-<<<<<<< Updated upstream
-vista\TorneoVista$1.class
-=======
 vista\MenuUsuario$3.class
->>>>>>> Stashed changes
 modelo\Ronda.class
 vista\GestionTorneosVista$1.class
 vista\GestionEquiposVista$5.class
+vista\GestionPartidosVista$7.class
 modelo\Torneo.class
+vista\GestionPartidosVista$9.class
+vista\GestionTorneosVista$8.class
+vista\ReporteTorneosVista$4.class
 vista\LoginVista$1.class
 modelo\Patrocinio.class
+vista\GestionTorneosVista$4.class
 controlador\ConexionBDD.class
 controlador\JugadorControlador.class
 controlador\RondaControlador.class
 modelo\Sede.class
-<<<<<<< Updated upstream
-controlador\MenuOrganizadorControlador.class
-=======
 vista\MenuUsuario$6.class
 vista\GestionTorneosVista$11.class
-vista\GestionPatrocinadoresVista$3.class
 controlador\ExportPDF.class
 vista\GestionPartidosVista$3.class
->>>>>>> Stashed changes
 modelo\Entrenador.class
 vista\GestionEquiposVista$2.class
 controlador\Exportable.class
