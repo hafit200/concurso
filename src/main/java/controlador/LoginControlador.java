@@ -17,19 +17,20 @@ import java.sql.SQLException;
 
 public class LoginControlador {
 
-    private Connection conexion;
-
-    public LoginControlador() {
-
-        ConexionBDD bd = new ConexionBDD();
-        conexion = bd.conectar();
-    }
-
     public Usuario iniciarSesion(String correo, String password) {
 
         Usuario usuario = null;
 
         try {
+
+            ConexionBDD bd = new ConexionBDD();
+            Connection conexion = bd.conectar();
+
+            if (conexion == null) {
+
+                System.out.println("NO HAY CONEXION");
+                return null;
+            }
 
             CallableStatement cs = conexion.prepareCall(
                     "{CALL sp_login(?, ?)}"
@@ -67,6 +68,7 @@ public class LoginControlador {
 
             rs.close();
             cs.close();
+            conexion.close();
 
         } catch (SQLException e) {
 

@@ -9,6 +9,7 @@ import controlador.InscripcionControlador;
 import controlador.RondaControlador;
 import controlador.JuegoControlador;
 import controlador.EquipoControlador;
+import controlador.ParticipacionJugadorControlador;
 
 import modelo.Torneo;
 import modelo.Inscripcion;
@@ -21,6 +22,8 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Jugador;
+import modelo.Participacion;
 
 /**
  *
@@ -33,7 +36,10 @@ public class GestionTorneosVista extends javax.swing.JFrame {
     private RondaControlador rondaControlador = new RondaControlador();
     private JuegoControlador juegoControlador = new JuegoControlador();
     private EquipoControlador equipoControlador = new EquipoControlador();
+    private ParticipacionJugadorControlador participacionJugadorControlador
+            = new ParticipacionJugadorControlador();
 
+    private DefaultTableModel modeloParticipaciones;
     private DefaultTableModel modeloTorneos;
     private DefaultTableModel modeloInscripciones;
     private DefaultTableModel modeloRondas;
@@ -58,6 +64,10 @@ public class GestionTorneosVista extends javax.swing.JFrame {
         cargarComboJuegos();
         cargarComboEquipos();
         cargarComboTorneos();
+        modeloParticipaciones
+                = (DefaultTableModel) tblParticipaciones.getModel();
+
+        cargarParticipaciones();
     }
 
     public void cargarTorneos() {
@@ -173,6 +183,19 @@ public class GestionTorneosVista extends javax.swing.JFrame {
         }
     }
 
+    public void cargarParticipaciones() {
+
+        modeloParticipaciones.setRowCount(0);
+
+        ArrayList<String[]> lista
+                = participacionJugadorControlador.consultar();
+
+        for (String[] p : lista) {
+
+            modeloParticipaciones.addRow(p);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -226,6 +249,17 @@ public class GestionTorneosVista extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblRondas = new javax.swing.JTable();
         cmbNombreRonda = new javax.swing.JComboBox<>();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        cmbJugadorParticipacion = new javax.swing.JComboBox<>();
+        cmbEquipoParticipacion = new javax.swing.JComboBox<>();
+        cmbTorneoParticipacion = new javax.swing.JComboBox<>();
+        btnAsignarJugador = new javax.swing.JButton();
+        btnEliminarParticipacion = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblParticipaciones = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -348,7 +382,7 @@ public class GestionTorneosVista extends javax.swing.JFrame {
                     .addComponent(btnLimpiarTorneo))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("TORNEOS", jPanel1);
@@ -452,7 +486,7 @@ public class GestionTorneosVista extends javax.swing.JFrame {
                     .addComponent(btnInscribir)
                     .addComponent(btnActualizarPosicion)
                     .addComponent(btnEliminarInscripciones))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(58, 58, 58))
         );
@@ -555,10 +589,97 @@ public class GestionTorneosVista extends javax.swing.JFrame {
                     .addComponent(btnLimpiarRonda))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("RONDAS", jPanel3);
+
+        jLabel14.setText("Jugador:");
+
+        jLabel15.setText("Equipo:");
+
+        jLabel16.setText("Torneo:");
+
+        cmbJugadorParticipacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cmbEquipoParticipacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cmbTorneoParticipacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnAsignarJugador.setText("Asignar");
+        btnAsignarJugador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarJugadorActionPerformed(evt);
+            }
+        });
+
+        btnEliminarParticipacion.setText("Eliminar");
+
+        tblParticipaciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Jugador", "Equipo", "Torneo"
+            }
+        ));
+        jScrollPane4.setViewportView(tblParticipaciones);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addComponent(btnAsignarJugador)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminarParticipacion))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel14)
+                            .addGap(64, 64, 64)
+                            .addComponent(cmbJugadorParticipacion, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(66, 66, 66)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cmbEquipoParticipacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cmbTorneoParticipacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addGap(54, 54, 54))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(cmbJugadorParticipacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(cmbEquipoParticipacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(cmbTorneoParticipacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAsignarJugador)
+                    .addComponent(btnEliminarParticipacion))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(126, 126, 126))
+        );
+
+        jTabbedPane1.addTab("JUGADORES", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -571,7 +692,7 @@ public class GestionTorneosVista extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addGap(550, 550, 550))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -773,110 +894,162 @@ public class GestionTorneosVista extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarPosicionActionPerformed
 
     private void btnEliminarInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarInscripcionesActionPerformed
-int fila = tblInscripciones.getSelectedRow();
+        int fila = tblInscripciones.getSelectedRow();
 
-if (fila == -1) {
+        if (fila == -1) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Seleccione una inscripción"
-    );
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Seleccione una inscripción"
+            );
 
-} else {
+        } else {
 
-    int id = Integer.parseInt(
-            tblInscripciones.getValueAt(
-                    fila,
-                    0
-            ).toString()
-    );
+            int id = Integer.parseInt(
+                    tblInscripciones.getValueAt(
+                            fila,
+                            0
+                    ).toString()
+            );
 
-    inscripcionControlador.eliminar(id);
+            inscripcionControlador.eliminar(id);
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Inscripción eliminada"
-    );
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Inscripción eliminada"
+            );
 
-    cargarInscripciones();
-}        // TODO add your handling code here:
+            cargarInscripciones();
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarInscripcionesActionPerformed
 
     private void txtGuardarRondaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGuardarRondaActionPerformed
-Ronda ronda = new Ronda();
+        Ronda ronda = new Ronda();
 
-ronda.setNumeroRonda(
-        Integer.parseInt(
-                txtNumeroRonda.getText()
-        )
-);
+        ronda.setNumeroRonda(
+                Integer.parseInt(
+                        txtNumeroRonda.getText()
+                )
+        );
 
-ronda.setNombre(
-        cmbNombreRonda.getSelectedItem().toString()
-);
+        ronda.setNombre(
+                cmbNombreRonda.getSelectedItem().toString()
+        );
 
-String datoTorneo = cmbTorneoRonda
-        .getSelectedItem()
-        .toString();
+        String datoTorneo = cmbTorneoRonda
+                .getSelectedItem()
+                .toString();
 
-int idTorneo = Integer.parseInt(
-        datoTorneo.split(" - ")[0]
-);
+        int idTorneo = Integer.parseInt(
+                datoTorneo.split(" - ")[0]
+        );
 
-Torneo torneo = new Torneo();
+        Torneo torneo = new Torneo();
 
-torneo.setIdTorneo(idTorneo);
+        torneo.setIdTorneo(idTorneo);
 
-ronda.setTorneo(torneo);
+        ronda.setTorneo(torneo);
 
-rondaControlador.insertar(ronda);
+        rondaControlador.insertar(ronda);
 
-JOptionPane.showMessageDialog(
-        this,
-        "Ronda guardada"
-);
+        JOptionPane.showMessageDialog(
+                this,
+                "Ronda guardada"
+        );
 
-cargarRondas();
-limpiarRonda();        // TODO add your handling code here:
+        cargarRondas();
+        limpiarRonda();        // TODO add your handling code here:
     }//GEN-LAST:event_txtGuardarRondaActionPerformed
 
     private void btnEliminarRondaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarRondaActionPerformed
-int fila = tblRondas.getSelectedRow();
+        int fila = tblRondas.getSelectedRow();
 
-if (fila == -1) {
+        if (fila == -1) {
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Seleccione una ronda"
-    );
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Seleccione una ronda"
+            );
 
-} else {
+        } else {
 
-    int id = Integer.parseInt(
-            tblRondas.getValueAt(
-                    fila,
-                    0
-            ).toString()
-    );
+            int id = Integer.parseInt(
+                    tblRondas.getValueAt(
+                            fila,
+                            0
+                    ).toString()
+            );
 
-    rondaControlador.eliminar(id);
+            rondaControlador.eliminar(id);
 
-    JOptionPane.showMessageDialog(
-            this,
-            "Ronda eliminada"
-    );
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Ronda eliminada"
+            );
 
-    cargarRondas();
-}        // TODO add your handling code here:
+            cargarRondas();
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarRondaActionPerformed
 
     private void btnLimpiarRondaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarRondaActionPerformed
-limpiarRonda();        // TODO add your handling code here:
+        limpiarRonda();        // TODO add your handling code here:
     }//GEN-LAST:event_btnLimpiarRondaActionPerformed
 
     private void cmbNombreRondaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNombreRondaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbNombreRondaActionPerformed
+
+    private void btnAsignarJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarJugadorActionPerformed
+        Participacion participacion = new Participacion();
+
+        String datoJugador = cmbJugadorParticipacion
+                .getSelectedItem()
+                .toString();
+
+        int idJugador = Integer.parseInt(
+                datoJugador.split(" - ")[0]
+        );
+
+        Jugador jugador = new Jugador();
+        jugador.setIdUsuario(idJugador);
+
+        participacion.setJugador(jugador);
+
+        String datoEquipo = cmbEquipoParticipacion
+                .getSelectedItem()
+                .toString();
+
+        int idEquipo = Integer.parseInt(
+                datoEquipo.split(" - ")[0]
+        );
+
+        Equipo equipo = new Equipo();
+        equipo.setIdEquipo(idEquipo);
+
+        participacion.setEquipo(equipo);
+
+        String datoTorneo = cmbTorneoParticipacion
+                .getSelectedItem()
+                .toString();
+
+        int idTorneo = Integer.parseInt(
+                datoTorneo.split(" - ")[0]
+        );
+
+        Torneo torneo = new Torneo();
+        torneo.setIdTorneo(idTorneo);
+
+        participacion.setTorneo(torneo);
+
+        participacionJugadorControlador.insertar(participacion);
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Jugador asignado al equipo"
+        );
+
+        cargarParticipaciones();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAsignarJugadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -915,7 +1088,9 @@ limpiarRonda();        // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizarPosicion;
+    private javax.swing.JButton btnAsignarJugador;
     private javax.swing.JButton btnEliminarInscripciones;
+    private javax.swing.JButton btnEliminarParticipacion;
     private javax.swing.JButton btnEliminarRonda;
     private javax.swing.JButton btnEliminarTorneo;
     private javax.swing.JButton btnGuardarTorneo;
@@ -923,15 +1098,21 @@ limpiarRonda();        // TODO add your handling code here:
     private javax.swing.JButton btnLimpiarRonda;
     private javax.swing.JButton btnLimpiarTorneo;
     private javax.swing.JComboBox<String> cmbEquipoInscripcion;
+    private javax.swing.JComboBox<String> cmbEquipoParticipacion;
     private javax.swing.JComboBox<String> cmbJuego;
+    private javax.swing.JComboBox<String> cmbJugadorParticipacion;
     private javax.swing.JComboBox<String> cmbNombreRonda;
     private javax.swing.JComboBox<String> cmbTorneoInscripcion;
+    private javax.swing.JComboBox<String> cmbTorneoParticipacion;
     private javax.swing.JComboBox<String> cmbTorneoRonda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -943,11 +1124,14 @@ limpiarRonda();        // TODO add your handling code here:
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tblInscripciones;
+    private javax.swing.JTable tblParticipaciones;
     private javax.swing.JTable tblRondas;
     private javax.swing.JTable tblTorneos;
     private javax.swing.JTextField txtFechaFin;
