@@ -8,13 +8,41 @@ package vista;
  *
  * @author LENOVO
  */
-public class GestionPatrocinadoresVista extends javax.swing.JFrame {
+import controlador.PatrocinadorControlador;
+import controlador.PatrocinioControlador;
+import controlador.TorneoControlador;
 
+import modelo.Patrocinador;
+import modelo.Patrocinio;
+import modelo.Torneo;
+
+import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+public class GestionPatrocinadoresVista extends javax.swing.JFrame {
+private PatrocinadorControlador patrocinadorControlador = new PatrocinadorControlador();
+private PatrocinioControlador patrocinioControlador = new PatrocinioControlador();
+private TorneoControlador torneoControlador = new TorneoControlador();
+
+private DefaultTableModel modeloPatrocinadores;
+private DefaultTableModel modeloPatrocinios;
     /**
      * Creates new form GestionPatrocinadoresVista
      */
     public GestionPatrocinadoresVista() {
-        initComponents();
+         initComponents();
+
+    setLocationRelativeTo(null);
+
+    modeloPatrocinadores = (DefaultTableModel) tblPatrocinadores.getModel();
+    modeloPatrocinios = (DefaultTableModel) tblPatrocinios.getModel();
+
+    cargarPatrocinadores();
+    cargarPatrocinios();
+
+    cargarComboPatrocinadores();
+    cargarComboTorneos();
     }
 
     /**
@@ -28,55 +56,559 @@ public class GestionPatrocinadoresVista extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtEmpresa = new javax.swing.JTextPane();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtRuc = new javax.swing.JTextPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtContacto = new javax.swing.JTextPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtCorreoContacto = new javax.swing.JTextPane();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        txtTelefonoContacto = new javax.swing.JTextPane();
+        btnEliminar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblPatrocinadores = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        cmbPatrocinador = new javax.swing.JComboBox<>();
+        cmbTorneoPatrocinio = new javax.swing.JComboBox<>();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        txtMonto = new javax.swing.JTextPane();
+        btnGuardarPatrocinio = new javax.swing.JButton();
+        btnEliminarPatrocinio = new javax.swing.JButton();
+        btnLimpiarPatrocinio = new javax.swing.JButton();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tblPatrocinios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("EMPRESA:");
+
+        jScrollPane1.setViewportView(txtEmpresa);
+
+        jLabel2.setText("RUC:");
+
+        jLabel3.setText("CONTACTO:");
+
+        jLabel4.setText("CORREO:");
+
+        jScrollPane2.setViewportView(txtRuc);
+
+        jScrollPane3.setViewportView(txtContacto);
+
+        jScrollPane4.setViewportView(txtCorreoContacto);
+
+        jLabel5.setText("TELEFONO:");
+
+        jScrollPane5.setViewportView(txtTelefonoContacto);
+
+        btnEliminar.setText("ELIMINAR");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        btnLimpiar.setText("LIMPIAR");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        btnGuardar.setText("GUARDAR");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
+        tblPatrocinadores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Empresa", "RUC", "Contacto", "Correo", "Teléfono", "Estado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(tblPatrocinadores);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(196, 196, 196)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel5))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(219, 219, 219))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGuardar)
+                .addGap(18, 18, 18)
+                .addComponent(btnEliminar)
+                .addGap(18, 18, 18)
+                .addComponent(btnLimpiar)
+                .addGap(161, 161, 161))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 492, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnLimpiar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab1", jPanel1);
+        jTabbedPane1.addTab("PATROCINADORES", jPanel1);
+
+        jLabel6.setText("PATROCINADOR:");
+
+        jLabel7.setText("TORNEO:");
+
+        jLabel8.setText("MONTO:  $");
+
+        cmbPatrocinador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cmbTorneoPatrocinio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jScrollPane7.setViewportView(txtMonto);
+
+        btnGuardarPatrocinio.setText("GUARDAR");
+        btnGuardarPatrocinio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarPatrocinioActionPerformed(evt);
+            }
+        });
+
+        btnEliminarPatrocinio.setText("ELIMINAR");
+        btnEliminarPatrocinio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarPatrocinioActionPerformed(evt);
+            }
+        });
+
+        btnLimpiarPatrocinio.setText("LIMPIAR");
+        btnLimpiarPatrocinio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarPatrocinioActionPerformed(evt);
+            }
+        });
+
+        tblPatrocinios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Patrocinador", "Torneo", "Monto"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(tblPatrocinios);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 112, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(72, 72, 72))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbPatrocinador, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbTorneoPatrocinio, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(166, 166, 166))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnGuardarPatrocinio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEliminarPatrocinio)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimpiarPatrocinio)
+                        .addGap(135, 135, 135))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 492, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(cmbPatrocinador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(cmbTorneoPatrocinio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardarPatrocinio)
+                    .addComponent(btnLimpiarPatrocinio)
+                    .addComponent(btnEliminarPatrocinio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        jTabbedPane1.addTab("tab2", jPanel2);
+        jTabbedPane1.addTab("PATROCINIOS", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(57, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+Patrocinador patrocinador = new Patrocinador();
+
+patrocinador.setNombreEmpresa(
+        txtEmpresa.getText()
+);
+
+patrocinador.setRuc(
+        txtRuc.getText()
+);
+
+patrocinador.setContactoNombre(
+        txtContacto.getText()
+);
+
+patrocinador.setContactoCorreo(
+        txtCorreoContacto.getText()
+);
+
+patrocinador.setContactoTelefono(
+        txtTelefonoContacto.getText()
+);
+
+patrocinador.setEstado("ACTIVO");
+
+patrocinadorControlador.insertar(
+        patrocinador
+);
+
+JOptionPane.showMessageDialog(
+        this,
+        "Patrocinador guardado"
+);
+
+cargarPatrocinadores();
+cargarComboPatrocinadores();
+limpiarPatrocinador();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+int fila = tblPatrocinadores.getSelectedRow();
+
+if (fila == -1) {
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Seleccione un patrocinador"
+    );
+
+    return;
+}
+
+int id = Integer.parseInt(
+        tblPatrocinadores.getValueAt(
+                fila,
+                0
+        ).toString()
+);
+
+patrocinadorControlador.eliminar(id);
+
+JOptionPane.showMessageDialog(
+        this,
+        "Patrocinador eliminado"
+);
+
+cargarPatrocinadores();
+cargarComboPatrocinadores();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+limpiarPatrocinador();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnGuardarPatrocinioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPatrocinioActionPerformed
+if (cmbPatrocinador.getSelectedItem() == null
+        || cmbTorneoPatrocinio.getSelectedItem() == null) {
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Faltan datos"
+    );
+
+    return;
+}
+
+Patrocinio patrocinio = new Patrocinio();
+
+String datoPatrocinador = cmbPatrocinador
+        .getSelectedItem()
+        .toString();
+
+int idPatrocinador = Integer.parseInt(
+        datoPatrocinador.split(" - ")[0]
+);
+
+Patrocinador patrocinador = new Patrocinador();
+
+patrocinador.setIdPatrocinador(
+        idPatrocinador
+);
+
+patrocinio.setPatrocinador(
+        patrocinador
+);
+
+
+String datoTorneo = cmbTorneoPatrocinio
+        .getSelectedItem()
+        .toString();
+
+int idTorneo = Integer.parseInt(
+        datoTorneo.split(" - ")[0]
+);
+
+Torneo torneo = new Torneo();
+
+torneo.setIdTorneo(
+        idTorneo
+);
+
+patrocinio.setTorneo(
+        torneo
+);
+
+
+patrocinio.setMontoAportado(
+        Double.parseDouble(
+                txtMonto.getText()
+        )
+);
+
+patrocinioControlador.insertar(
+        patrocinio
+);
+
+JOptionPane.showMessageDialog(
+        this,
+        "Patrocinio guardado"
+);
+
+cargarPatrocinios();
+limpiarPatrocinio();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarPatrocinioActionPerformed
+
+    private void btnEliminarPatrocinioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPatrocinioActionPerformed
+int fila = tblPatrocinios.getSelectedRow();
+
+if (fila == -1) {
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Seleccione un patrocinio"
+    );
+
+    return;
+}
+
+int id = Integer.parseInt(
+        tblPatrocinios.getValueAt(
+                fila,
+                0
+        ).toString()
+);
+
+patrocinioControlador.eliminar(id);
+
+JOptionPane.showMessageDialog(
+        this,
+        "Patrocinio eliminado"
+);
+
+cargarPatrocinios();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarPatrocinioActionPerformed
+
+    private void btnLimpiarPatrocinioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarPatrocinioActionPerformed
+limpiarPatrocinio();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarPatrocinioActionPerformed
+public void cargarPatrocinadores() {
+
+    modeloPatrocinadores.setRowCount(0);
+
+    ArrayList<String[]> lista = patrocinadorControlador.consultar();
+
+    for (String[] p : lista) {
+
+        modeloPatrocinadores.addRow(p);
+    }
+}
+
+public void cargarPatrocinios() {
+
+    modeloPatrocinios.setRowCount(0);
+
+    ArrayList<String[]> lista = patrocinioControlador.consultar();
+
+    for (String[] p : lista) {
+
+        modeloPatrocinios.addRow(p);
+    }
+}
+
+public void cargarComboPatrocinadores() {
+
+    cmbPatrocinador.removeAllItems();
+
+    ArrayList<String[]> lista = patrocinadorControlador.consultar();
+
+    for (String[] p : lista) {
+
+        cmbPatrocinador.addItem(
+                p[0] + " - " + p[1]
+        );
+    }
+}
+public void cargarComboTorneos() {
+
+    cmbTorneoPatrocinio.removeAllItems();
+
+    ArrayList<String[]> lista = torneoControlador.consultar();
+
+    for (String[] t : lista) {
+
+        cmbTorneoPatrocinio.addItem(
+                t[0] + " - " + t[1]
+        );
+    }
+}
+
+public void limpiarPatrocinador() {
+
+    txtEmpresa.setText("");
+    txtRuc.setText("");
+    txtContacto.setText("");
+    txtCorreoContacto.setText("");
+    txtTelefonoContacto.setText("");
+}
+
+public void limpiarPatrocinio() {
+
+    txtMonto.setText("");
+
+    if (cmbPatrocinador.getItemCount() > 0) {
+        cmbPatrocinador.setSelectedIndex(0);
+    }
+
+    if (cmbTorneoPatrocinio.getItemCount() > 0) {
+        cmbTorneoPatrocinio.setSelectedIndex(0);
+    }
+}
+
 
     /**
      * @param args the command line arguments
@@ -114,8 +646,40 @@ public class GestionPatrocinadoresVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnEliminarPatrocinio;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnGuardarPatrocinio;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnLimpiarPatrocinio;
+    private javax.swing.JComboBox<String> cmbPatrocinador;
+    private javax.swing.JComboBox<String> cmbTorneoPatrocinio;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable tblPatrocinadores;
+    private javax.swing.JTable tblPatrocinios;
+    private javax.swing.JTextPane txtContacto;
+    private javax.swing.JTextPane txtCorreoContacto;
+    private javax.swing.JTextPane txtEmpresa;
+    private javax.swing.JTextPane txtMonto;
+    private javax.swing.JTextPane txtRuc;
+    private javax.swing.JTextPane txtTelefonoContacto;
     // End of variables declaration//GEN-END:variables
 }

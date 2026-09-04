@@ -33,7 +33,7 @@ public class ConexionBDD {
             conexion = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/torneo_esports?autoReconnect=true&useSSL=false",
                     "root",
-                    "maximiliano"
+                    "admin"
             );
 
             System.out.println("CONECTADO");
