@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controlador;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +12,7 @@ import java.sql.Date;
 import java.sql.Types;
 import java.util.ArrayList;
 import modelo.Inscripcion;
+
 /**
  *
  * @author LENOVO
@@ -97,6 +99,31 @@ public class InscripcionControlador {
             );
 
             ps.setInt(1, id);
+            ps.executeUpdate();
+
+            con.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void actualizarPosicion(int id, int posicion) {
+
+        try {
+
+            ConexionBDD c = new ConexionBDD();
+            Connection con = c.conectar();
+
+            PreparedStatement ps = con.prepareStatement(
+                    "UPDATE inscripcion "
+                    + "SET posicion_final=? "
+                    + "WHERE id_inscripcion=?"
+            );
+
+            ps.setInt(1, posicion);
+            ps.setInt(2, id);
+
             ps.executeUpdate();
 
             con.close();

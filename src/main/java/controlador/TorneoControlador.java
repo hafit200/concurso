@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controlador;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,11 +11,11 @@ import java.sql.SQLException;
 import java.sql.Date;
 import java.util.ArrayList;
 import modelo.Torneo;
+
 /**
  *
  * @author LENOVO
  */
-
 
 public class TorneoControlador {
 
@@ -69,7 +70,7 @@ public class TorneoControlador {
                     rs.getString("fecha_inicio"),
                     rs.getString("fecha_fin"),
                     rs.getString("juego"),
-                    rs.getString("premio_total"),
+                    "$" + String.format("%.2f", rs.getDouble("premio_total")),
                     rs.getString("estado")
                 };
 

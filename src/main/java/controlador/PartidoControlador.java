@@ -128,4 +128,36 @@ public class PartidoControlador {
             System.out.println(e.getMessage());
         }
     }
+
+    public void actualizarMarcador(
+            int id,
+            int marcador1,
+            int marcador2) {
+
+        try {
+
+            ConexionBDD c = new ConexionBDD();
+
+            Connection con = c.conectar();
+
+            PreparedStatement ps = con.prepareStatement(
+                    "UPDATE partido "
+                    + "SET marcador_equipo1=?, "
+                    + "marcador_equipo2=? "
+                    + "WHERE id_partido=?"
+            );
+
+            ps.setInt(1, marcador1);
+            ps.setInt(2, marcador2);
+            ps.setInt(3, id);
+
+            ps.executeUpdate();
+
+            con.close();
+
+        } catch (SQLException e) {
+
+            System.out.println(e.getMessage());
+        }
+    }
 }
